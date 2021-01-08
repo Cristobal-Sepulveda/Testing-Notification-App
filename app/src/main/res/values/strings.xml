@@ -4,6 +4,7 @@
     <!-- This String uses _channel_id because Starting with API lvl 26, all notification must
     be assigned to that channel-->
     <string name="egg_notification_channel_id" translatable="false">egg_channel</string>
+    <string name="egg_notification_channel_name" translatable="true">Egg</string>
 
     <string name="notification_title">Egg Timer</string>
     <string name="eggs_ready">It is time! Bon appetit!</string>
