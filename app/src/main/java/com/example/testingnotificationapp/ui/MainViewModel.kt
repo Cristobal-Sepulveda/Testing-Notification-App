@@ -42,6 +42,10 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
     val elapsedTime: LiveData<Long>
         get() = _elapsedTime
 
+    private val _timeSelection = MutableLiveData<Int>()
+    val timeSelection: LiveData<Int>
+        get() = _timeSelection
+
     private lateinit var timer: CountDownTimer
 
     init {
@@ -66,6 +70,31 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
             createTimer()
         }
 
+    }
+
+    /**
+     * Turns on or off the alarm
+     *
+     * @param isChecked, alarm status to be set.
+     */
+    fun setAlarm(isChecked: Boolean) {
+        when (isChecked) {
+            true -> timeSelection.value?.let { startTimer(it) }
+            false -> cancelNotification()
+        }
+    }
+    private fun cancelNotification() {
+        resetTimer()
+        alarmManager.cancel(notifyPendingIntent)
+    }
+
+    /**
+     * Sets the desired interval for the alarm
+     *
+     * @param timerLengthSelection, interval timerLengthSelection value.
+     */
+    fun setTimeSelected(timerLengthSelection: Int) {
+        _timeSelection.value = timerLengthSelection
     }
 
     private fun startTimer(timerLengthSelection: Int) {

@@ -29,9 +29,9 @@ because i used egg_notification_channel_id as the notification channel, i start 
 
 //TODO 2.1
 first, i create a private function in mainFragment
-because channels are avaible from API LVL 26 and above, the version check is required.
 
 //TODO 2.2
+because channels are avaible from API LVL 26 and above, the version check is required.
 notification channel is the constructor
 the constructor needs an ID, a name (this name is seen by the user in app info) & the importance lvl for the channel.
 
@@ -45,8 +45,20 @@ then we get an instance of notificationManager by calling getSystemService
 call createNotificationChannel on notificatiionManager instance and pass the notificationChannel object
 
 //TODO 2.6
-Now, to create a channel, i call the Function that i just create on mainFragment, in onCreateView, and i pass the arguments (the id is the same id that i put in the builder in NetworkUtil) /** Setting a wrong value as the channel id will make the notification fail
+Now, to create a channel, I call the Function that I just create on mainFragment, in onCreateView, and I pass the arguments (the id is the same id that I put in the builder in NetworkUtil) /** Setting a wrong value as the channel id will make the notification fail
 
 and the notification is done!
 
 by using channels, i can customize the settings, and behavior for all notifications sent on this channel & the users can also change the settings for each channel by using the channel list
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Third COMMIT
+
+in this commit, I just add:
+//TODO 3.0
+Code that use notificationManager.sendNotification from NetworkUtil (this code shows a notification)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Four COMMIT
