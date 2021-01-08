@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import com.example.testingnotificationapp.MainActivity
 import com.example.testingnotificationapp.R
@@ -33,6 +34,16 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT)
 
+    // TODO: Step 8.1
+    val eggImage = BitmapFactory.decodeResource(
+        applicationContext.resources,
+        R.drawable.cooked_egg
+    )
+    // TODO: Step 8.2
+    val bigPicStyle = NotificationCompat.BigPictureStyle()
+        .bigPicture(eggImage)
+        .bigLargeIcon(null)
+
     // TODO: Step 1.1 Build the notification
     /** To support devices running older versions, you need to Use NotificationCompat.Builder instead
     of Notification.Builder */
@@ -51,7 +62,9 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         // TODO: Step 5.3
         .setContentIntent((contentPendingIntent))
         .setAutoCancel(true)
-
+        // TODO: Step 8.3
+        .setStyle(bigPicStyle)
+        .setLargeIcon(eggImage)
     // TODO: Step 1.2
     /** You need to call notify with an unique ID and the builder + .build() */
     /** We can call this function because we are in a function that allow us to do that*/
