@@ -4,8 +4,16 @@
 
 FIRST COMMIT
 
-first, i make a Networkutil In the first commit i use a notification builder and provide to it a title text, a content text and an icon. Once the builder has all necesarry fields i make a notify()
+first, i make a Networkutil
 
+//TODO 1.1
+
+I use a notification builder and provide to it a title text, a content text and an icon. Once the builder has all necesarry fields
+
+//TODO 1.2
+then i make a notify()
+
+// TODO 1.3
 then, in MainViewModel i make a notificationManager:
 
             /** the argument NotificationManager is a systemService which provides all the
@@ -62,3 +70,47 @@ Code that use notificationManager.sendNotification from NetworkUtil (this code s
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 Four COMMIT
+
+Navigation Added
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Fifth COMMIT
+
+here, I will add a Content Intent:
+
+//TODO 5.1
+first, I create an Intent with the application context and the activity to be launched
+
+//TODO 5.2
+next, in NetworkUtil, I create a new PendingIntent. The system will use the PendingIntent to open the app if is closed
+The PendingIntent flag specifies the option to create a new PendingIntent or use an existing one. I use FLAG_UPDATE_CURRENT as the flag because i dont want to create a new notification, but update if there's an existing one.
+
+//TODO 5.3
+next, I pass the PendingIntent to the notification (IN BUILDER) -> .setContentIntent(contentPendingIntent).
+also, setAutoCancel(true), so that when the user tap the notification, the notification dismisses itself as it takes u to the app.
+
+NOW, when the Notificacion is clicked, the PendingIntent will be triggered opening up the mainActivity
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Sixth COMMIT
+
+here i use a switch.material from fragment_main to display a notification when .isChecked = true
+
+//TODO 6.1
+val notificationManager = ContextCompat.getSystemService(
+    requireContext(),
+    NotificationManager::class.java
+) as NotificationManager
+
+binding.onOffSwitch.setOnClickListener{ v:View ->
+ val isChecked = binding.onOffSwitch.isChecked
+    if(isChecked){
+        notificationManager.sendNotification(
+            R.string.eggs_ready.toString(),
+            requireContext())
+    }
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

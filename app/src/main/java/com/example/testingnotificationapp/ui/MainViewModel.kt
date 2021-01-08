@@ -107,7 +107,7 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
                 }
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
-                // TODO: Step 1.5 get an instance of NotificationManager and call sendNotification
+                // TODO: Step 1.3 get an instance of NotificationManager and call sendNotification
                 /** the argument NotificationManager is a systemService which provides all the
                  * functions exposed for notifications API including the extension function you edit
                  *
