@@ -44,6 +44,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigPicture(eggImage)
         .bigLargeIcon(null)
 
+
     // TODO: Step 1.1 Build the notification
     /** To support devices running older versions, you need to Use NotificationCompat.Builder instead
     of Notification.Builder */

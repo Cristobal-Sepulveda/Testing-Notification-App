@@ -114,3 +114,33 @@ binding.onOffSwitch.setOnClickListener{ v:View ->
 }
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Seventh commit
+
+update & cancel notifications.
+
+//TODO 7.1
+first I start by changing the name of NetworkUtil to Notification Util and then make a new extension functions
+fun NotificationManager.cancelNotifications() which calls cancelAll()
+
+//TODO 7.2
+I add the new extension function in the setOnCLickListener, this function is used when the switch is passed to unswitch
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Fifth commit
+
+in this Step I will use notificationCompact.BigPictureStyle to create an expandable notification
+
+//TODO 8.1
+start by loading in notificationManager.sendNotification an Image from Resources by using the BitmapFactory
+
+//TODO 8.2
+After that, I create a new BigPictureStyle and set your image = val bigPicStyle = NotificatonCOmpact.BigPictureStyle
+.bigPicture(//TODO 8.1).bigLargeIcon(null)
+
+//TODO 8.3
+set the new style to the builder by calling .setStyle(//TODO 8.2)
+and . setLargeIcon(//TODO 8.1)
+
+The notification is expanded automatically when is in the top of the notification, else, its collapsed.
