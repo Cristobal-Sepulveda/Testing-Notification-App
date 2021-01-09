@@ -25,27 +25,27 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
     // Create the content intent for the notification, which launches
     // this activity
-    // TODO: Step 5.1
+// TODO: Step 5.1
     val contentIntent = Intent(applicationContext, MainActivity::class.java)
 
-    // TODO: Step 5.2
+// TODO: Step 5.2
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
         NOTIFICATION_ID,
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT)
 
-    // TODO: Step 8.1
+// TODO: Step 8.1
     val eggImage = BitmapFactory.decodeResource(
         applicationContext.resources,
         R.drawable.cooked_egg
     )
-    // TODO: Step 8.2
+// TODO: Step 8.2
     val bigPicStyle = NotificationCompat.BigPictureStyle()
         .bigPicture(eggImage)
         .bigLargeIcon(null)
 
-    //TODO: Step 9.2
+//TODO: Step 9.2
     val snoozeIntent = Intent (applicationContext, SnoozeReceiver::class.java)
     val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
             applicationContext,
@@ -54,7 +54,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
             FLAGS
     )
 
-    // TODO: Step 1.1 Build the notification
+// TODO: Step 1.1 Build the notification
     /** To support devices running older versions, you need to Use NotificationCompat.Builder instead
     of Notification.Builder */
     /** This String uses _channel_id because Starting with API lvl 26, all notification must
@@ -69,36 +69,19 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .getString(R.string.notification_title))
         .setContentText(messageBody)
 
-        // TODO: Step 5.3
+// TODO: Step 5.3
         .setContentIntent((contentPendingIntent))
         .setAutoCancel(true)
-            // TODO: Step 8.3
+// TODO: Step 8.3
         .setStyle(bigPicStyle)
         .setLargeIcon(eggImage)
-    // TODO: Step 9.3
-            .addAction(
-                    R.drawable.egg_icon,
-                    applicationContext.getString(R.string.snooze),
-                    snoozePendingIntent
-            )
-    // TODO: Step 1.2
+// TODO: Step 9.3
+        .addAction(R.drawable.egg_icon, applicationContext.getString(R.string.snooze), snoozePendingIntent)
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+// TODO: Step 1.2
     /** You need to call notify with an unique ID and the builder + .build() */
     /** We can call this function because we are in a function that allow us to do that*/
     notify(NOTIFICATION_ID, builder.build())
-
-    // TODO: Step 1.8 use the new 'breakfast' notification channel
-
-
-
-    // TODO: Step 1.13 set content intent
-
-    // TODO: Step 2.1 add style to builder
-
-    // TODO: Step 2.3 add snooze action
-
-    // TODO: Step 2.5 set priority
-
-
 
 }
 
