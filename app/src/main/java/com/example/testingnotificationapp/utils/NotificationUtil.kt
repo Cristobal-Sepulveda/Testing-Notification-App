@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
+import com.example.android.eggtimernotifications.receiver.SnoozeReceiver
 import com.example.testingnotificationapp.MainActivity
 import com.example.testingnotificationapp.R
 
@@ -44,6 +45,14 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigPicture(eggImage)
         .bigLargeIcon(null)
 
+    //TODO: Step 9.2
+    val snoozeIntent = Intent (applicationContext, SnoozeReceiver::class.java)
+    val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            REQUEST_CODE,
+            snoozeIntent,
+            FLAGS
+    )
 
     // TODO: Step 1.1 Build the notification
     /** To support devices running older versions, you need to Use NotificationCompat.Builder instead
@@ -63,9 +72,15 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         // TODO: Step 5.3
         .setContentIntent((contentPendingIntent))
         .setAutoCancel(true)
-        // TODO: Step 8.3
+            // TODO: Step 8.3
         .setStyle(bigPicStyle)
         .setLargeIcon(eggImage)
+    // TODO: Step 9.3
+            .addAction(
+                    R.drawable.egg_icon,
+                    applicationContext.getString(R.string.snooze),
+                    snoozePendingIntent
+            )
     // TODO: Step 1.2
     /** You need to call notify with an unique ID and the builder + .build() */
     /** We can call this function because we are in a function that allow us to do that*/

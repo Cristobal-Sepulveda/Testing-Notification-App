@@ -10,4 +10,6 @@
     <string name="eggs_ready">It is time! Bon appetit!</string>
     <string name="timer_running">Egg timer is running…</string>
 
+    <string name="snooze">Snooze</string>
+
 </resources>

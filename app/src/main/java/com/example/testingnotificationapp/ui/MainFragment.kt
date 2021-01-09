@@ -65,7 +65,7 @@ class MainFragment : Fragment() {
             val notificationChannel = NotificationChannel(
                     channelId,
                     channelName,
-                    NotificationManager.IMPORTANCE_LOW
+                    NotificationManager.IMPORTANCE_DEFAULT
             )
             //TODO: Step 2.3
             notificationChannel.enableLights(true)
