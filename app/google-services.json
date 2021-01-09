@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1015444602081",
+    "project_id": "testing-notifications-90c07",
+    "storage_bucket": "testing-notifications-90c07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015444602081:android:e46720d5fcabd56442cba0",
+        "android_client_info": {
+          "package_name": "com.example.testingnotificationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015444602081-tvukcmd7d46iia7l7ak3kprbr52dna59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJiGF01iJqMSxUhOEquWWXv3jJ1Vancrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015444602081-tvukcmd7d46iia7l7ak3kprbr52dna59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

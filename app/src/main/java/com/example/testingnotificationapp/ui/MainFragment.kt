@@ -67,24 +67,25 @@ class MainFragment : Fragment() {
                     channelName,
                     NotificationManager.IMPORTANCE_DEFAULT
             )
-            //TODO: Step 2.3
+//TODO: Step 11.1
+                    .apply{
+                        setShowBadge(false)
+                    }
+
+//TODO: Step 2.3
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
             notificationChannel.description = "Time for breakfast"
 
-            //TODO: Step 2.4
+//TODO: Step 2.4
             val notificationManager = requireActivity().getSystemService(
                     NotificationManager::class.java
             )
 
-            //TODO 11.1
-            IN the function to create the channel createChanel write:
-            .apply{
-                setShowBadge(false)
-            }
-            //TODO: Step 2.5
+//TODO: Step 2.5
             notificationManager.createNotificationChannel(notificationChannel)
+
         }
     }
 }
