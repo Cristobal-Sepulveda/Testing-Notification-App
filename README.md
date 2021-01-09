@@ -134,3 +134,14 @@ Next, still on NetworkUtil, call the addAction function on the notification buil
 .addAction(R.drawable .egg_icon, applicatioNContext.getString(R.string.snooze),
 snoozePendingIntent) -> this intent that you create in todo 9.2 will be use to
 trigger the right broadcast receiver when your action is clicked
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+NINETH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+This commit is about NotificationManager.Importance....
+if you change the importance lvl in the createChanel, you will have diferents
+behaviors in the app. see more details in net.
+//TODO 10.1
+to be ensure that the behavior you set work on devices with API LVL below 25, I
+put in the builder of the notification .setPriority(NotificationCompat.PRIORITY_...)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

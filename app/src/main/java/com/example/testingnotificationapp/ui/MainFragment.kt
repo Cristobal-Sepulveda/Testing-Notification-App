@@ -77,6 +77,12 @@ class MainFragment : Fragment() {
             val notificationManager = requireActivity().getSystemService(
                     NotificationManager::class.java
             )
+
+            //TODO 11.1
+            IN the function to create the channel createChanel write:
+            .apply{
+                setShowBadge(false)
+            }
             //TODO: Step 2.5
             notificationManager.createNotificationChannel(notificationChannel)
         }
