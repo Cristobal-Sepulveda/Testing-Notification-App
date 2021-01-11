@@ -1,22 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    //TODO: Step 12.2
+    // Add the following line to the bottom of the file:
+    id 'com.google.gms.google-services'  // Google Play services Gradle plugin
 }
 
 android {
-    dataBinding{
-        enabled = true
-    }
+    buildFeatures{dataBinding true}
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
     defaultConfig {
         applicationId "com.example.testingnotificationapp"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -52,7 +52,11 @@ dependencies {
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
-//TODO: Step 12.2
-    // Add the following line to the bottom of the file:
-    apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+
+//TODO: Step 13.1
+    //for fcm
+    implementation 'com.google.firebase:firebase-core:18.0.0'
+    implementation 'com.google.firebase:firebase-iid:21.0.1'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'android.arch.work:work-runtime:1.0.1'
 }

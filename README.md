@@ -145,3 +145,111 @@ behaviors in the app. see more details in net.
 to be ensure that the behavior you set work on devices with API LVL below 25, I
 put in the builder of the notification .setPriority(NotificationCompat.PRIORITY_...)
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+TENTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+This commit is about Notification Badges that are small dots that appears on
+the launcher icon of the associated app when the app has an active notification.
+  Users can long press on the app icon to reveal the notifications.
+      This badgeds are setting by default, so i dont do nothing to able this,
+      but, If some developer want to disable it, the only thing is the Next
+//TODO 11.1
+IN the function to create the channel createChanel write:
+      .apply{
+        setShowBadge(false)
+    }
+Remember to reinstall the app to see this
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ELEVENTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Step 1: Create a Firebase project
+Before you can add Firebase to your Android app, you need to create a Firebase project to connect to your Android app.
+After logging in to the Firebase console, click Add project, then select or enter a Project name. Name your project ‘fcm-codelab’.
+Click Continue.
+You can skip setting up Google Analytics and choose the ‘Not Right Now’ option.
+Click ‘Create Project’ to finish setting up the Firebase project.
+Step 2: Register your app with Firebase
+Now that you have a Firebase project, you can add your Android app to it.
+In the center of the Firebase console's project overview page, click the Android icon to launch the setup workflow.
+Enter the package id of your android project, com.example.android.eggtimernotifications, as the Firebase application Id. Make sure you enter the ID your app is using because you cannot add or modify this value after you’ve registered your app with your Firebase project.
+Click Register app.
+Step 3: Add the Firebase configuration file to your project
+Add the Firebase Android configuration file to your app:
+Click Download google-services.json to obtain your Firebase Android config file (google-services.json).
+You can download your Firebase Android config file again at any time.
+Make sure the config file is not appended with additional characters and should only be named google-services.json
+Move your config file into the module (app-level) directory of your app.
+//TODO 12.1
+Step 4: Configure your Android project to enable Firebase products
+To enable Firebase products in your app, add the google-services plugin to your Gradle files.
+//TODO 12.2
+In your (project-level) Gradle file (build.gradle), add rules to include the Google Services plugin. Check that you have Google's Maven repository, as well.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+TWELFTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Exercise: Single Device Notifications
+//TODO 13.1
+in app:gradle, add the dependencies to use FCM
+//TODO 13.2
+ADD THIS CODE TO THE MANIFEST: //this will enable FirebaseMessagingService
+the service metadata in Android manifest registers .MyFirebaseMessagingService as
+a service and enter an intent filter, so this service will receive messages sent
+from FCM
+& the last part of the metadata declares breakfast_notification_channel_id as default
+notification channel id for firebase
+Remember, its a good idea to create a new channel for FCM since your users may want
+to enable or disable push notification separately
+<service
+               android:name=".MyFirebaseMessagingService"
+               android:exported="false">
+           <intent-filter>
+               <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+           </intent-filter>
+       </service>
+       <!-- [START fcm_default_icon] -->
+       <!--
+Set custom default icon. This is used when no icon is set for incoming notification messages.
+            See README(https://goo.gl/l4GJaQ) for more.
+       -->
+       <meta-data
+               android:name="com.google.firebase.messaging.default_notification_icon"
+               android:resource="@drawable/common_google_signin_btn_icon_dark"/>
+       <!--
+Set color used with incoming notification messages. This is used when no color is set for the incoming
+            notification message. See README(https://goo.gl/6BKBk7) for more.
+       -->
+       <meta-data
+               android:name="com.google.firebase.messaging.default_notification_color"
+               android:resource="@color/colorAccent"/> <!-- [END fcm_default_icon] -->
+       <!-- [START fcm_default_channel] -->
+       <meta-data
+           android:name="com.google.firebase.messaging.default_notification_channel_id"
+           android:value="@string/breakfast_notification_channel_id" />
+       <!-- [END fcm_default_channel] -->
+//TODO 13.3
+in MainFragment & in onCreateView, create a new channel with breakfast_notification_channel_id
+and the breakfast_notification_channel_name from string resources.
+//TODO 13.4
+//add onNewToken: this code will print a registration token to locate everytime
+a new token is received
+in most cases, you may want to start this token.
+onNewToken, as his name saids, will be called when a new token is generated.
+this function is called only when a new token is created ( 1 per device & app, if
+you reinstall the app, you will recive a new token)
+//TODO 13.5 this TODO IS TO DO IN FIREBASE Console.
+in order to send a notification, we will use the notification composer.
+select Interaccion->Cloud Messaging->Send your first message|
+here enter the notificaiton title & text, then, send test message
+copy your app token from logCat by filtering  Refreshed Token
+add and select the token (+). put the app in the background a press TEST
+after you click test,  the targeted client device with the app in background should
+receive the notification
+TO SEE HOW WORK THIS IN FOREGROUND, see the next commit's
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+THIRTEENTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

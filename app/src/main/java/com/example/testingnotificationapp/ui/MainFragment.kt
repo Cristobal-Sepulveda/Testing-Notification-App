@@ -1,4 +1,4 @@
-package com.example.testingnotificationapp.ui
+    package com.example.testingnotificationapp.ui
 
 import android.app.Activity
 import android.app.NotificationChannel
@@ -37,7 +37,11 @@ class MainFragment : Fragment() {
 
         //TODO: Step 2.6
         createChannel(getString(R.string.egg_notification_channel_id), getString(R.string.egg_notification_channel_name))
-        //TODO: Step 6.1
+//TODO: Step 13.3
+        createChannel(
+            getString(R.string.breakfast_notification_channel_id),
+            getString(R.string.breakfast_notification_channel_name)
+        )
         val notificationManager = ContextCompat.getSystemService(
             requireContext(),
             NotificationManager::class.java
