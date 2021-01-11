@@ -15,4 +15,8 @@
     <string name="breakfast_notification_channel_description">Breakfast reminder</string>
     <string name="breakfast_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="breakfast_notification_channel_name" translatable="true">Breakfast</string>
+
+    <!-- this are for the topic notification's-->
+    <string name="message_subscribe_failed">Failed to subscribe to topic</string>
+    <string name="message_subscribed">Subscribed to topic</string>
 </resources>

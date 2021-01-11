@@ -1,9 +1,7 @@
     package com.example.testingnotificationapp.ui
 
-import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
@@ -12,23 +10,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.NotificationManagerCompat
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.example.testingnotificationapp.AlarmReceiver
 import com.example.testingnotificationapp.R
 import com.example.testingnotificationapp.databinding.FragmentMainBinding
 import com.example.testingnotificationapp.utils.cancelNotifications
 import com.example.testingnotificationapp.utils.sendNotification
+import com.google.firebase.messaging.FirebaseMessaging
+
+private val TOPIC = "breakfast"
+private lateinit var binding: FragmentMainBinding
+private lateinit var viewModel: MainViewModel
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -37,11 +34,10 @@ class MainFragment : Fragment() {
 
         //TODO: Step 2.6
         createChannel(getString(R.string.egg_notification_channel_id), getString(R.string.egg_notification_channel_name))
-//TODO: Step 13.3
-        createChannel(
-            getString(R.string.breakfast_notification_channel_id),
-            getString(R.string.breakfast_notification_channel_name)
-        )
+
+        //TODO: Step 13.3
+        createChannel(getString(R.string.breakfast_notification_channel_id), getString(R.string.breakfast_notification_channel_name))
+
         val notificationManager = ContextCompat.getSystemService(
             requireContext(),
             NotificationManager::class.java
@@ -58,6 +54,9 @@ class MainFragment : Fragment() {
                notificationManager.cancelNotifications()
             }
         }
+
+        //TODO: Step 14.2
+        subscribeTopic()
 
         return binding.root
     }
@@ -91,5 +90,21 @@ class MainFragment : Fragment() {
             notificationManager.createNotificationChannel(notificationChannel)
 
         }
+    }
+
+    //TODO: Step 14.1
+    private fun subscribeTopic(){
+    // [START subscribe_topics]
+    FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+        /** addOnCompleteListener is to get notified back from FCM on if your suscription is succeeded
+            or failed */
+        .addOnCompleteListener { task ->
+            var msg = getString(R.string.message_subscribed)
+            if (!task.isSuccessful) {
+                msg = getString(R.string.message_subscribe_failed)
+            }
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        }
+    // [END subscribe_topics]
     }
 }
