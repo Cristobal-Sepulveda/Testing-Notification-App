@@ -1,8 +1,20 @@
 "# Testing-Notification-App"
 
-This App was Created by Cristóbal Sepúlveda Silva.
-Public Administrator.
-All Rights Reserved.
+Here I'll practice how to create, send,
+update, cancel, and customize notifications.
+I've seen how to use notifications effectively by adding
+actions using page outs and different styles depending on the needs.
+I also learned different importance levels and how to
+set or change the importance with respect to the users.
+
+I also learn how to use push notifications with Firebase Cloud Messaging.
+I created a new Firebase project and edit the Firebase project to this Android project.
+I've seen how to send the Firebase Cloud message and also use
+ICM to transfer data between the backend and the mobile app.
+
+Also, I worked on a fully functional existing app,
+but make it more awesome by adding notifications
+when necessary without disturbing the users.
 
 FIRST COMMIT
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -25,7 +37,7 @@ then, in MainViewModel i make a notificationManager:
             notificationManager.sendNotification(app.getString(R.string.timer_running), app)
 
 SECOND COMMIT            
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 here i create the channel & customize the notification settings and behavior.
 because i used egg_notification_channel_id as the notification channel, i start with create the channel
 //TODO 2.1
@@ -251,5 +263,73 @@ TO SEE HOW WORK THIS IN FOREGROUND, see the next commit's
 
 THIRTEENTH COMMIT
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Sending FCM Notifications to a topic
+  if some topic messaging is based on publish/suscribe model, publish /suscribe
+  allows backend apps to push relevant content to intereseted clients.
+  topics, allows you to send a message to multiple devices that have opted into
+  that particular topic
+  -for clients, topics are specific data sources which the client is intereseted in
+  -for the server, topics are groups of devices which are opted into receive updates
+  on the specific data source
+    topics, can be used for porpouses like suscribing news, weather forecast or
+    sport results
+  in this commit ill create a topic to remind the intereseted app users to something
+    -to suscribe a topic, the client app calls, suscribe to topic on firebase
+    messaging object need the SCM topic name
+    -this goal can have two outcomes, if the caller succeeds, onCOmpleteListener
+    callback will be called with suscribe message
+    -if the client fails to suscribe, the same callback will receive an error
+    message
+in this commit, i will automatically suscribe the user to a topic, although in
+most cases, you may want to leave the option of which topics to suscribe to, to
+the user.
+//TODO 14.1
+open MainFragment and create the function subscribeTopic. you need to call THIS
+function to subscribe to a topic when the app starts.
+//TODO 14.2
+to do that in onCreateView call subscribeTopic()
+//TODO 14.3
+this TODO is maked from firebase console. we can test sending messages to a topic.
+open the notification composer (cloud messaging) and select send your first message.
+write the title and the content and then, this time, instead of sending the
+ message to a single device, click target>topic
+and enter the name of the topic!
+REMEMBER THAT ALL THIS MESSAGES WORK IS THE APP IS IN THE BACKGROUND!!!
+THAT IS ALL!
+now, the app have more that one channel to notifications now
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+FOURTEENTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+for the porpouses of this commit, i want to remind the app user to have some
+eggs for breakfast(notification payload), but, because we want to show the message
+whether the app is in background or foreground, therefore ill send data payload too
+when you send the fcm message to devices, the notification message will shown
+automatically if the app is not running or in the background
+however, if the app is running and in the foreground, then the notification is
+not shown automatically and instead the app code decides what to do with the
+message.
+if the app is in the foreground when it receives an FCM message, the onMessageReceived
+function will be triggered automatically with a RemoteMessage object
+this is where your app can silently handle notification & data payload or trigger
+the notification.
+You dont need to send data with FCM to your app. but let's test this by printing
+the data sent to the log.
+in order to handle FCM messages, you need to handle the data payload into
+onMessageReceived function of MyFirebaseMessagingService
+the rules to send this messages are the same, but, in notificacion you must put
+title ad content, then in segmentacion, tema del mensaje and then in otras opciones
+put the key and value of the data
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+FIFTEENTH COMMIT
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+This commit is about Foreground vs BACKGROUND:
+You want to make sure the user sees a notification popping up as a reminder.
+lets make some code to trigger a notification:
+on onMessageReceived in MyFirebaseMessagingService, right after the code you
+recently entered to check the data message, I add code to reach send the
+notification using the notifications framework.
+//TODO 16.1
+with this, you will see a notification even if the user is in the foreground
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
